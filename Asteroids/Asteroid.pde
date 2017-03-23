@@ -31,12 +31,18 @@ class Asteroid extends GameObject
   
   Asteroid(int newIteration, PVector newPos)
   {
+    float angleVariance = PI / 2.0;
+    float angle;
+    
     pos = new PVector(newPos.x, newPos.y);
     
     iteration = newIteration;
     
     speed = random(minSpeed * iteration, maxSpeed * iteration);
-    velocity = PVector.random2D();
+    
+    angle = PVector.angleBetween(newPos, gameManager.playerShip.pos);
+    angle = random(angle - angleVariance / 2.0, angle + angleVariance / 2.0);
+    velocity = PVector.fromAngle(angle);
     velocity.setMag(speed);
     
     size = random(minSize / iteration, maxSize / iteration);
@@ -74,7 +80,7 @@ class Asteroid extends GameObject
   {
    if(iteration < maxIteration)
    {
-     int numChildren = ceil(random(0, 4));
+     int numChildren = ceil(random(2, 4));
      for(int i = 0; i < numChildren; i++) //<>//
      {
       Asteroid tmp = new Asteroid(iteration + 1, pos);
