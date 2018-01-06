@@ -7,16 +7,16 @@ class Bullet extends GameObject
   float velScalar = 600;  
   PVector velocity;
   
-  Bullet(GameManager newGM, PVector newPos, float theta)
+  Bullet(GameManager newGM, PVector newPos, float theta, PVector shipVelocity)
   {
-    gameManager = newGM;
+    gameManager = newGM; //<>//
     pos = new PVector();
     pos.x = newPos.x;
     pos.y = newPos.y;
     
     velocity = new PVector();
-    velocity.x = cos(theta) * velScalar;
-    velocity.y = sin(theta) * velScalar;
+    velocity.x = (cos(theta) * velScalar) + shipVelocity.x;
+    velocity.y = (sin(theta) * velScalar) + shipVelocity.y;
   }
   
   void update()

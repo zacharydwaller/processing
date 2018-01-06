@@ -58,7 +58,7 @@ class Ship extends GameObject
     bulletPos.x = pos.x + (cos(theta) * size);
     bulletPos.y = pos.y + (sin(theta) * size);
 
-    Bullet bullet = new Bullet(gameManager, bulletPos, theta);
+    Bullet bullet = new Bullet(gameManager, bulletPos, theta, velocity);
     gameManager.spawnObject(bullet);
 
     hasFired = true;
